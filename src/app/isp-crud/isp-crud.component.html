@@ -1,0 +1,112 @@
+<div style="padding-top: 10px;">
+  <table class="ui striped table stackable table">
+    <thead>
+      <tr>
+        <th scope="col">ISP Name</th>
+        <th scope="col">Max Speed</th>
+        <th scope="col">Rating</th>
+        <th scope="col">Price</th>
+        <th scope="col">Contact Number</th>
+        <th scope="col">Web Site</th>
+        <th scope="col">Email</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let isp of ispService.isps; let i = index">
+        <td data-label="ISP Name" scope="row">{{isp.name}}</td>
+        <td data-label="Max Speed">{{isp.max_speed}}</td>
+        <td data-label="Rating">{{isp.rating}}</td>
+        <td data-label="Price">{{isp.lowest_price}}</td>
+        <td data-label="Contact Number">{{isp.contact_number}}</td>
+        <td data-label="Web Site">{{isp.url}}</td>
+        <td data-label="Email">{{isp.email}}</td>
+        <td>
+          <button [disabled]="!(i>2)" type="button" class="ui olive button"
+            (click)="onEdit(isp)" style="margin: 5px;">Edit</button>
+          <button [disabled]="!(i>2)" type="button" class="ui pink button"
+            (click)="deleteIsp(isp)" style="margin: 5px;">Delete</button>
+        </td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="text-left">
+    <button type="submit" class="btn btn-outline-primary" (click)="onNew()">New</button>
+  </div>
+</div>
+<br>
+<div class="ispRegEntry" *ngIf="showNew">
+  <form (ngSubmit)="onSave(ispForm)" #ispForm="ngForm">
+    <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="ispService.ispSelected._id">
+    <div class="ui small form">
+      <div class="three fields">
+        <div class="field">
+          <label>ISP Name</label>
+          <input class="form-control" type="text" [(ngModel)]="ispService.ispSelected.name" name="name"
+            placeholder="Enter ISP Name,  Ex: Airtel, Jio" required maxlength="20" #name="ngModel">
+          <div class="ui pointing red basic label" *ngIf="!name.valid && name.touched"> Please enter ISP name</div>
+        </div>
+        <div class="field">
+          <label>Max Speed</label>
+          <input class="form-control" type="text" [(ngModel)]="ispService.ispSelected.max_speed" name="max_speed"
+            placeholder="Enter max speed, Ex: 100Mbps, 1Gbps" required maxlength="10" #max_speed="ngModel">
+          <div class="ui pointing red basic label" *ngIf="!max_speed.valid && max_speed.touched"> Please enter max speed
+          </div>
+        </div>
+        <div class="field">
+          <label>Rating</label>
+          <input class="form-control" type="text" [(ngModel)]="ispService.ispSelected.rating" name="rating"
+            placeholder="Enter rating, Ex: 5.5 out of 10" required maxlength="3" #rating="ngModel">
+          <div class="ui pointing red basic label" *ngIf="!rating.valid && rating.touched"> Please enter rating</div>
+        </div>
+      </div>
+      <div class="three fields">
+        <div class="field">
+          <label>Price</label>
+          <input class="form-control" type="text" [(ngModel)]="ispService.ispSelected.lowest_price" name="lowest_price"
+            placeholder="Enter starting price per month, Ex: 299" required maxlength="5" #lowest_price="ngModel">
+          <div class="ui pointing red basic label" *ngIf="!lowest_price.valid && lowest_price.touched"> Please enter
+            value for price</div>
+        </div>
+        <div class="field">
+          <label>Contact Number</label>
+          <input class="form-control" type="text" [(ngModel)]="ispService.ispSelected.contact_number"
+            name="contact_number" placeholder="Enter 10 digit Contact number" #contact_number="ngModel" minlength="10"
+            maxlength="12">
+          <div class="ui pointing red basic label" *ngIf="!contact_number.valid && contact_number.touched">Please enter
+            10 digit number</div>
+        </div>
+        <div class="field">
+          <label>Web Site</label>
+          <input class="form-control" type="text" [(ngModel)]="ispService.ispSelected.url" name="url"
+            placeholder="Enter ISP Website, Ex: www.airtel.com" required maxlength="20" #url="ngModel">
+          <div class="ui pointing red basic label" *ngIf="!url.valid && url.touched">Please enter valid URL</div>
+        </div>
+      </div>
+      <div class="three fields">
+        <div class="field">
+          <label>Email</label>
+          <input class="form-control" type="text" [(ngModel)]="ispService.ispSelected.email" name="email"
+            placeholder="Enter email address, Ex: airtelinternet@aritel.com" required maxlength="30" email
+            #email="ngModel">
+          <div class="ui pointing red basic label" *ngIf="!email.valid && email.touched">Please enter valid email</div>
+        </div>
+        <div class="field">
+          <label>Image URL</label>
+          <input class="form-control" type="text" [(ngModel)]="ispService.ispSelected.image" name="image"
+            placeholder="Enter ISP logo url, Ex: http://***/airtelLogo.jpg">
+        </div>
+        <div class="field">
+          <label>Description</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+            [(ngModel)]="ispService.ispSelected.description" name="description"
+            placeholder="Enter offered plans, Ex: 5GB at 299/month" maxlength="500"></textarea>
+        </div>
+      </div>
+      <button class="ui olive submit button" type="submit" [disabled]="!ispForm.valid">{{submitType}}</button>
+      <button class="ui purple submit button" (click)="onCancel()">Cancel</button>
+    </div>
+  </form>
+</div>

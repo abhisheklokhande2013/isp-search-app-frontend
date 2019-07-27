@@ -1,0 +1,45 @@
+<div class="ui raised segment">
+    <div class="ui search" style="width: inherit;">
+        <div class="ui icon input">
+            <input class="prompt" type="text" placeholder="Search by Name..." [(ngModel)]="searchTerm">
+            <i class="search icon"></i>
+        </div>
+        <div class="results"></div>
+    </div>
+    <div class="ui active inverted dimmer" *ngIf="showLoader">
+        <div class="ui text loader">Loading ISP list...</div>
+    </div>
+    <div class="ui container" style="height: 375px; overflow:auto; padding-top: 5px;">
+        <div class="ui middle aligned divided animated selection list" *ngFor="let isp of filteredIsps;">
+            <div class="item" (click)="onSelect(isp)">
+                <img class="ui avatar image" src="{{isp.image}}">
+                <div class="content">
+                    <div class="description">{{isp.name}} <i class="rupee sign icon"></i>{{isp.lowest_price}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui container" style="padding-top: 10px">
+        <h4 class="ui horizontal divider header">
+            <i class="fas fa-sort"></i>
+            Sort By
+        </h4>
+        <div class="ui form">
+            <div class="inline fields">
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="sortby" value="name" (change)="radioChangeHandler($event)">
+                        <label>Name</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="sortby" value="price" (change)="radioChangeHandler($event)">
+                        <label>Price</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

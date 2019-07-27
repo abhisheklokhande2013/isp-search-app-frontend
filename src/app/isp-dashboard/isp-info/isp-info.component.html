@@ -1,0 +1,71 @@
+<div *ngIf="ispService.showIspInfo">
+    <div class="ui raised segment">
+        <div class="ui orange raised card" style="height: 430px; width: 100%">
+            <div class="content">
+                <div class="ui top attached big label" style="text-align: center;">{{ispService.ispSelected.name}}
+                </div>
+                <div class="description" style="padding-top: 20px;">
+                    <div class="ui middle aligned list">
+                        <div class="item" style="padding-bottom: 10px; padding-top: 5px;">
+                            <i class="wifi icon"></i>
+                            <div class="content">
+                                {{ispService.ispSelected.max_speed}}
+                            </div>
+                        </div>
+                        <div class="item" style="padding-bottom: 10px; padding-top: 10px;">
+                            <i class="phone volume icon"></i>
+                            <div class="content">
+                                {{ispService.ispSelected.contact_number}}
+                            </div>
+                        </div>
+                        <div class="item" style="padding-bottom: 10px; padding-top: 10px;">
+                            <i class="mail icon"></i>
+                            <div class="content">
+                                <a href="{{ispService.ispSelected.email}}">{{ispService.ispSelected.email}}</a>
+                            </div>
+                        </div>
+                        <div class="item" style="padding-bottom: 10px; padding-top: 10px;">
+                            <i class="linkify icon"></i>
+                            <div class="content">
+                                <a href="https://{{ispService.ispSelected.url}}">{{ispService.ispSelected.url}}</a>
+                            </div>
+                        </div>
+                        <div class="item" style="padding-bottom: 10px; padding-top: 8px;">
+                            <div class="ui tag labels">
+                                <a class="ui large label">
+                                    <i class="rupee sign icon"></i>{{ispService.ispSelected.lowest_price}}
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="ui info message" style="height: 100px; overflow:auto;">
+                                <img class="ui tiny image" src="{{ispService.ispSelected.image}}">
+                                {{ispService.ispSelected.description}}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="extra">
+                Rating: {{ispService.ispSelected.rating}}
+                <!-- <div class="ui rating" data-rating="3" data-max-rating="5"></div> -->
+            </div>
+
+        </div>
+        <div class="ui container" style="padding-top: 10px;">
+            <a class="ui labeled icon pink button" href="https://{{ispService.ispSelected.url}}">
+                <i class="fas fa-link icon"></i>
+                Link
+            </a>
+            <button class="ui labeled icon olive button" style="margin: 2px;">
+                <i class="share icon"></i>
+                Share
+            </button>
+            <button class="ui labeled icon purple button shrink" style="margin: 2px;">
+                <i class="download icon"></i>
+                Download
+            </button>
+        </div>
+    </div>
+</div>

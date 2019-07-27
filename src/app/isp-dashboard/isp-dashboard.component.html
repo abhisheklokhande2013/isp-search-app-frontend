@@ -1,0 +1,48 @@
+<div class="ui container" style="padding-top: 15px;">
+  <div class="ui center aligned three column centered grid">
+    <div class="column">
+      <div class="ui statistics mini">
+        <div class="orange statistic">
+          <div class="label">
+            Total ISP's
+          </div>
+          <div class="value">
+            {{totalIspCount}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="ui statistics mini">
+        <div class="olive statistic">
+          <div class="label">
+            API Hit's
+          </div>
+          <div class="value">
+            {{apiCounter}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="ui statistics mini">
+        <div class="pink statistic">
+          <div class="label">
+            Date
+          </div>
+          <div class="value">
+            {{ today | date:'medium' }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="ui two column doubling stackable grid container" style="padding-top: 5px;">
+  <div class="column">
+    <app-isp-list></app-isp-list>
+  </div>
+  <div class="column">
+    <app-isp-info></app-isp-info>
+  </div>
+</div>
